@@ -1,0 +1,726 @@
+{
+  "schema_version": 1,
+  "edition": "2026-09-14",
+  "published_at": "2026-09-14T21:44:45Z",
+  "observed_on": "2026-09-14",
+  "geography": "US merchants",
+  "currency": "USD",
+  "selection": "Thirteen published flat-rate price paths at eight providers plus two interchange-plus rate cards; not a market-wide sample or an overall service ranking.",
+  "scope": "Standard published online card pricing for a US business; custom, volume and enterprise contracts, in-person rates, bank debits, wallets priced differently, buy-now-pay-later and platform (Connect-style) pricing are excluded.",
+  "methodology": {
+    "evidence": "Public provider pricing pages and documentation; no live transactions, statements or merchant data.",
+    "money_unit": "integer USD cents; percentages stored as decimal strings and evaluated as exact fractions",
+    "domestic_fee": "amount × rate_percent / 100 + fixed_fee_cents",
+    "international_card_fee": "amount × (rate_percent + international_card_surcharge_percent) / 100 + fixed_fee_cents",
+    "international_card_with_conversion_fee": "amount × (rate_percent + international_card_surcharge_percent + currency_conversion_percent) / 100 + fixed_fee_cents",
+    "effective_rate": "fee / amount",
+    "processing_fee_lost_on_full_refund": "domestic fee where the provider states that the original processing fee is not returned; null where not stated",
+    "rounding": "Cents are rounded half up from exact fractions for display and export; effective rates are shown to two decimal places.",
+    "excluded": [
+      "card-present and keyed rates",
+      "ACH, bank transfer and wallet-specific rates",
+      "network, scheme and premium-card pass-through fees",
+      "goods, delivery, tax and labor",
+      "platform subscriptions other than the listed monthly fees",
+      "instant payout fees",
+      "chargeback outcomes beyond the published fee",
+      "sales tax or VAT collected by merchant-of-record services"
+    ],
+    "rebuild_policy": "Rebuilding does not refresh observation dates. Verify current pricing before creating a new edition.",
+    "retrieval": "Pages were retrieved from a US network location on September 14, 2026 (UTC); several providers serve region-specific prices to other locations."
+  },
+  "sources": [
+    {
+      "id": "stripe-pricing",
+      "title": "Stripe US pricing",
+      "url": "https://stripe.com/pricing",
+      "supports": "2.9% + $0.30 per successful domestic card transaction; +1.5% international cards; +1% currency conversion; $15 dispute received fee and $15 dispute countered fee; refunds free for cards; processing and conversion fees not returned on refunds; no setup or monthly fees; Managed Payments adds 3.5%."
+    },
+    {
+      "id": "stripe-disputes",
+      "title": "Stripe — How disputes work",
+      "url": "https://docs.stripe.com/disputes/how-disputes-work",
+      "supports": "The dispute received fee is non-refundable outside Mexico; the dispute countered fee is returned on a win."
+    },
+    {
+      "id": "stripe-refunds",
+      "title": "Stripe — Refund and cancel payments",
+      "url": "https://docs.stripe.com/refunds",
+      "supports": "Stripe's processing fees from the original transaction aren't returned on a refund."
+    },
+    {
+      "id": "paypal-fees",
+      "title": "PayPal US merchant fees (last updated September 1, 2026)",
+      "url": "https://www.paypal.com/us/webapps/mpp/merchant-fees",
+      "supports": "PayPal Checkout, Venmo and guest checkout 3.49% + $0.49; Standard Credit and Debit Card Payments 2.99% + $0.49; Advanced Credit and Debit Card Payments 2.89% + $0.29; +1.50% on international commercial transactions; 3.00% currency conversion spread on received funds; $20 chargeback fee for card chargebacks outside a PayPal account; $15 standard and $30 high-volume dispute fee; fees paid to receive a payment are not returned on refund."
+    },
+    {
+      "id": "paypal-dispute-help",
+      "title": "PayPal — When is the dispute fee applied and how is it calculated?",
+      "url": "https://www.paypal.com/us/cshelp/article/when-is-the-dispute-rate-applied-and-how-is-it-calculated-help350",
+      "supports": "If a seller appeals and wins, the disputed amount and the Standard Dispute Fee are reimbursed; the High Volume Dispute Fee is not."
+    },
+    {
+      "id": "braintree-fees",
+      "title": "PayPal Braintree fees (last updated May 7, 2026)",
+      "url": "https://www.paypal.com/us/enterprise/paypal-braintree-fees",
+      "supports": "2.89% + $0.29 for cards and digital wallets; additional 1% for cards issued outside the US and 1% for non-USD transactions; $15 chargeback fee; transaction fees are not returned for refunded transactions."
+    },
+    {
+      "id": "shopify-pricing",
+      "title": "Shopify US pricing",
+      "url": "https://www.shopify.com/pricing",
+      "supports": "US view: Basic $39/month ($29 on yearly billing), Grow $105 ($79), Advanced $399 ($299); Shopify Payments online standard card rates 2.9%, 2.7% and 2.5% + 30¢, online premium card rates 3.5%, 3.3% and 3.1% + 30¢, online international rates +1%; third-party transaction fees 2%, 1% and 0.6%. The page serves local-currency views by visitor location."
+    },
+    {
+      "id": "shopify-international",
+      "title": "Shopify — Domestic, international and EEA credit cards",
+      "url": "https://help.shopify.com/en/manual/payments/shopify-payments/transactions/domestic-international-eu-credit-cards",
+      "supports": "US stores using Shopify Payments pay a 1% cross-border fee on sales with cards issued in another country."
+    },
+    {
+      "id": "shopify-conversion",
+      "title": "Shopify — Fees and costs for international selling",
+      "url": "https://help.shopify.com/en/manual/international/pricing/fees",
+      "supports": "1.5% currency conversion fee for US stores (2% elsewhere); conversion and card fees are not returned on refunds; no extra conversion fee on refunds or chargebacks."
+    },
+    {
+      "id": "shopify-refunds",
+      "title": "Shopify Payments — Refunds",
+      "url": "https://help.shopify.com/en/manual/payments/shopify-payments/payouts/refunds",
+      "supports": "The original credit card transaction fee is not refunded; no additional fee is charged for processing a refund."
+    },
+    {
+      "id": "shopify-chargebacks",
+      "title": "Shopify Payments — Chargeback process and country fees",
+      "url": "https://help.shopify.com/en/manual/payments/chargebacks/chargeback-process",
+      "supports": "US chargeback fee $15, returned on a win."
+    },
+    {
+      "id": "authorize-net-pricing",
+      "title": "Authorize.net pricing",
+      "url": "https://www.authorize.net/sign-up/pricing.html",
+      "supports": "All-in-One option $25 per month and 2.9% + 30¢ per transaction; gateway-only option $25 per month and 10¢ per transaction plus a 10¢ daily batch fee; $0.00 gateway chargeback fee for cards and $25 for eCheck.Net chargebacks. No international surcharge or refund-fee policy is quantified on the page."
+    },
+    {
+      "id": "paddle-pricing",
+      "title": "Paddle pricing",
+      "url": "https://www.paddle.com/pricing",
+      "supports": "5% + 50¢ per Checkout transaction as merchant of record, no monthly fees; custom pricing for products under $10 or invoicing."
+    },
+    {
+      "id": "paddle-chargebacks",
+      "title": "Paddle — Understanding chargebacks",
+      "url": "https://www.paddle.com/help/manage/risk-prevention/understanding-chargebacks-with-paddle",
+      "supports": "Chargeback fee 20 USD/GBP/EUR or 40 CAD/AUD; not refunded when Paddle wins the dispute."
+    },
+    {
+      "id": "lemon-squeezy-fees",
+      "title": "Lemon Squeezy — Fees",
+      "url": "https://docs.lemonsqueezy.com/help/getting-started/fees",
+      "supports": "5% + 50¢ per transaction; +1.5% for transactions outside the US; +1.5% for PayPal; +0.5% for subscription payments; payouts via Stripe are free to US bank accounts."
+    },
+    {
+      "id": "lemon-squeezy-refunds",
+      "title": "Lemon Squeezy — Refunds and chargebacks",
+      "url": "https://docs.lemonsqueezy.com/help/payments/refunds-chargebacks",
+      "supports": "Refunded amount minus the platform fee is deducted from the next payout; chargebacks deduct the refunded amount minus the platform fee plus a $15 dispute fee."
+    },
+    {
+      "id": "lemon-squeezy-currencies",
+      "title": "Lemon Squeezy — Currencies",
+      "url": "https://docs.lemonsqueezy.com/help/payments/currencies",
+      "supports": "Transactions are processed in USD at mid-market rates with no additional conversion fee."
+    },
+    {
+      "id": "adyen-pricing",
+      "title": "Adyen pricing",
+      "url": "https://www.adyen.com/pricing",
+      "supports": "$0.13 fixed processing fee per transaction plus Interchange++ and a 0.60% markup for Visa and Mastercard in North America; no monthly or setup fees, but a minimum invoice depending on industry."
+    },
+    {
+      "id": "square-pricing",
+      "title": "Square pricing (US)",
+      "url": "https://squareup.com/us/en/pricing",
+      "supports": "Square Free: online or invoice card payments 3.3% + 30¢, Online API 2.9% + 30¢, tap/dip/swipe 2.6% + 15¢, manually entered or card on file 3.5% + 15¢; Square Plus and Premium: online 2.9% + 30¢; international card transaction fee 1.5% on every plan."
+    },
+    {
+      "id": "square-fees",
+      "title": "Square — Learn about Square fees",
+      "url": "https://squareup.com/help/us/en/article/5068-what-are-square-s-fees",
+      "supports": "Same rate table by plan; 1.5% international transaction fee for cards issued in a different country than the Square account, on all tiers; no fees for chargebacks and dispute management."
+    },
+    {
+      "id": "square-refunds",
+      "title": "Square — Manage customer refunds",
+      "url": "https://squareup.com/help/us/en/article/6116-manage-customer-refunds",
+      "supports": "When you refund a payment, the processing fees for the payment aren't refunded back to you."
+    },
+    {
+      "id": "square-disputes",
+      "title": "Square — Payment disputes walkthrough",
+      "url": "https://squareup.com/help/us/en/article/3882-payment-disputes-walkthrough",
+      "supports": "No dispute-management fees for chargebacks; the disputed amount is held and returned on a win."
+    },
+    {
+      "id": "helcim-pricing",
+      "title": "Helcim pricing",
+      "url": "https://www.helcim.com/pricing/",
+      "supports": "Interchange+ 0.50% + 25¢ for keyed and online payments and 0.40% + 8¢ in person at $0–50K monthly card volume, falling with volume; $0 chargeback fee for cases resolved in your favor and $15 if lost; no added fee for refunds but processing fees remain payable; no monthly, signup or PCI fees; recurring payments add 0.4%."
+    }
+  ],
+  "providers": [
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.9",
+      "fixed_fee_cents": 30,
+      "international_card_surcharge_percent": "1.5",
+      "currency_conversion_percent": "1.0",
+      "monthly_fee_cents": 0,
+      "merchant_of_record": false,
+      "source_ids": [
+        "stripe-pricing",
+        "stripe-disputes",
+        "stripe-refunds"
+      ],
+      "dispute_fee": {
+        "received_cents": 1500,
+        "countered_cents": 1500,
+        "label": "$15 received + $15 countered"
+      },
+      "dispute_fee_returned_on_win": "countered fee only",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Standard pay-as-you-go pricing. Managed Payments (merchant of record) adds 3.5% and is excluded."
+    },
+    {
+      "id": "paypal-checkout",
+      "name": "PayPal Checkout (PayPal, Venmo, guest)",
+      "pricing_model": "flat_rate",
+      "rate_percent": "3.49",
+      "fixed_fee_cents": 49,
+      "international_card_surcharge_percent": "1.5",
+      "currency_conversion_percent": "3.0",
+      "monthly_fee_cents": 0,
+      "merchant_of_record": false,
+      "source_ids": [
+        "paypal-fees",
+        "paypal-dispute-help"
+      ],
+      "dispute_fee": {
+        "standard_cents": 1500,
+        "high_volume_cents": 3000,
+        "label": "$15 dispute fee ($30 high volume)"
+      },
+      "dispute_fee_returned_on_win": "standard fee, on appeal win",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Currency conversion is a 3.00% spread on received funds; a 4.00% spread applies to buyer-side conversion."
+    },
+    {
+      "id": "paypal-standard-cards",
+      "name": "PayPal Standard Credit and Debit Card Payments",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.99",
+      "fixed_fee_cents": 49,
+      "international_card_surcharge_percent": "1.5",
+      "currency_conversion_percent": "3.0",
+      "monthly_fee_cents": 0,
+      "merchant_of_record": false,
+      "source_ids": [
+        "paypal-fees"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 2000,
+        "label": "$20 chargeback fee"
+      },
+      "dispute_fee_returned_on_win": "not stated",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Card chargebacks filed with the issuer outside a PayPal account carry the chargeback fee."
+    },
+    {
+      "id": "paypal-advanced-cards",
+      "name": "PayPal Advanced Credit and Debit Card Payments",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.89",
+      "fixed_fee_cents": 29,
+      "international_card_surcharge_percent": "1.5",
+      "currency_conversion_percent": "3.0",
+      "monthly_fee_cents": 0,
+      "merchant_of_record": false,
+      "source_ids": [
+        "paypal-fees"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 2000,
+        "label": "$20 chargeback fee"
+      },
+      "dispute_fee_returned_on_win": "not stated",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14"
+    },
+    {
+      "id": "braintree",
+      "name": "PayPal Braintree",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.89",
+      "fixed_fee_cents": 29,
+      "international_card_surcharge_percent": "1.0",
+      "currency_conversion_percent": "1.0",
+      "monthly_fee_cents": null,
+      "merchant_of_record": false,
+      "source_ids": [
+        "braintree-fees"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 1500,
+        "label": "$15 chargeback fee"
+      },
+      "dispute_fee_returned_on_win": "not stated",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Monthly fee not stated on the fee page."
+    },
+    {
+      "id": "square-free-online",
+      "name": "Square Free — online checkout or invoice",
+      "pricing_model": "flat_rate",
+      "rate_percent": "3.3",
+      "fixed_fee_cents": 30,
+      "international_card_surcharge_percent": "1.5",
+      "currency_conversion_percent": null,
+      "monthly_fee_cents": 0,
+      "merchant_of_record": false,
+      "source_ids": [
+        "square-pricing",
+        "square-fees",
+        "square-refunds",
+        "square-disputes"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 0,
+        "label": "no dispute-management fee"
+      },
+      "dispute_fee_returned_on_win": "not applicable",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Square Plus and Premium plans list 2.9% + 30¢ online with a monthly subscription. US accounts settle in USD; no conversion fee is published."
+    },
+    {
+      "id": "square-free-api",
+      "name": "Square Free — Online API",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.9",
+      "fixed_fee_cents": 30,
+      "international_card_surcharge_percent": "1.5",
+      "currency_conversion_percent": null,
+      "monthly_fee_cents": 0,
+      "merchant_of_record": false,
+      "source_ids": [
+        "square-pricing",
+        "square-fees",
+        "square-refunds",
+        "square-disputes"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 0,
+        "label": "no dispute-management fee"
+      },
+      "dispute_fee_returned_on_win": "not applicable",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Card payments made inside a web or mobile app through Square payments APIs."
+    },
+    {
+      "id": "shopify-basic",
+      "name": "Shopify Payments — Basic",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.9",
+      "fixed_fee_cents": 30,
+      "international_card_surcharge_percent": "1.0",
+      "currency_conversion_percent": "1.5",
+      "monthly_fee_cents": 3900,
+      "merchant_of_record": false,
+      "source_ids": [
+        "shopify-pricing",
+        "shopify-international",
+        "shopify-conversion",
+        "shopify-refunds",
+        "shopify-chargebacks"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 1500,
+        "label": "$15 chargeback fee"
+      },
+      "dispute_fee_returned_on_win": "yes",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "monthly_fee_annual_billing_cents": 2900,
+      "third_party_provider_fee_percent": "2.0",
+      "premium_card_rate_percent": "3.5"
+    },
+    {
+      "id": "shopify-grow",
+      "name": "Shopify Payments — Grow",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.7",
+      "fixed_fee_cents": 30,
+      "international_card_surcharge_percent": "1.0",
+      "currency_conversion_percent": "1.5",
+      "monthly_fee_cents": 10500,
+      "merchant_of_record": false,
+      "source_ids": [
+        "shopify-pricing",
+        "shopify-international",
+        "shopify-conversion",
+        "shopify-refunds",
+        "shopify-chargebacks"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 1500,
+        "label": "$15 chargeback fee"
+      },
+      "dispute_fee_returned_on_win": "yes",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "monthly_fee_annual_billing_cents": 7900,
+      "third_party_provider_fee_percent": "1.0",
+      "premium_card_rate_percent": "3.3"
+    },
+    {
+      "id": "shopify-advanced",
+      "name": "Shopify Payments — Advanced",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.5",
+      "fixed_fee_cents": 30,
+      "international_card_surcharge_percent": "1.0",
+      "currency_conversion_percent": "1.5",
+      "monthly_fee_cents": 39900,
+      "merchant_of_record": false,
+      "source_ids": [
+        "shopify-pricing",
+        "shopify-international",
+        "shopify-conversion",
+        "shopify-refunds",
+        "shopify-chargebacks"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 1500,
+        "label": "$15 chargeback fee"
+      },
+      "dispute_fee_returned_on_win": "yes",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "monthly_fee_annual_billing_cents": 29900,
+      "third_party_provider_fee_percent": "0.6",
+      "premium_card_rate_percent": "3.1"
+    },
+    {
+      "id": "authorize-net",
+      "name": "Authorize.net All-in-One",
+      "pricing_model": "flat_rate",
+      "rate_percent": "2.9",
+      "fixed_fee_cents": 30,
+      "international_card_surcharge_percent": null,
+      "currency_conversion_percent": null,
+      "monthly_fee_cents": 2500,
+      "merchant_of_record": false,
+      "source_ids": [
+        "authorize-net-pricing"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 0,
+        "label": "$0 gateway chargeback fee (cards)"
+      },
+      "dispute_fee_returned_on_win": "not applicable",
+      "processing_fee_kept_on_refund": null,
+      "observed_on": "2026-09-14",
+      "note": "Bundled gateway and merchant account. International surcharge and refund-fee treatment are not quantified on the pricing page."
+    },
+    {
+      "id": "paddle",
+      "name": "Paddle",
+      "pricing_model": "flat_rate",
+      "rate_percent": "5.0",
+      "fixed_fee_cents": 50,
+      "international_card_surcharge_percent": null,
+      "currency_conversion_percent": null,
+      "monthly_fee_cents": 0,
+      "merchant_of_record": true,
+      "source_ids": [
+        "paddle-pricing",
+        "paddle-chargebacks"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 2000,
+        "label": "$20 chargeback fee"
+      },
+      "dispute_fee_returned_on_win": "no",
+      "processing_fee_kept_on_refund": null,
+      "observed_on": "2026-09-14",
+      "note": "Merchant of record: tax registration, filing and remittance are included. No separate international or conversion surcharge is published; refund-fee treatment was not stated on the pages retrieved."
+    },
+    {
+      "id": "lemon-squeezy",
+      "name": "Lemon Squeezy",
+      "pricing_model": "flat_rate",
+      "rate_percent": "5.0",
+      "fixed_fee_cents": 50,
+      "international_card_surcharge_percent": "1.5",
+      "currency_conversion_percent": "0",
+      "monthly_fee_cents": 0,
+      "merchant_of_record": true,
+      "source_ids": [
+        "lemon-squeezy-fees",
+        "lemon-squeezy-refunds",
+        "lemon-squeezy-currencies"
+      ],
+      "dispute_fee": {
+        "chargeback_cents": 1500,
+        "label": "$15 dispute fee"
+      },
+      "dispute_fee_returned_on_win": "not stated",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Merchant of record. PayPal payments add 1.5% and subscription payments add 0.5%; transactions are processed in USD without a conversion fee."
+    },
+    {
+      "id": "helcim",
+      "name": "Helcim",
+      "pricing_model": "interchange_plus",
+      "rate_card": "interchange + 0.50% + $0.25",
+      "rate_card_basis": "Keyed and online payments at $0–50K monthly card volume; the margin falls at higher volume tiers",
+      "fixed_fee_cents": 25,
+      "markup_percent": "0.50",
+      "international_card_surcharge_percent": null,
+      "currency_conversion_percent": null,
+      "monthly_fee_cents": 0,
+      "merchant_of_record": false,
+      "source_ids": [
+        "helcim-pricing"
+      ],
+      "dispute_fee": {
+        "won_cents": 0,
+        "lost_cents": 1500,
+        "label": "$0 if resolved in your favor, $15 if lost"
+      },
+      "dispute_fee_returned_on_win": "not charged on a win",
+      "processing_fee_kept_on_refund": true,
+      "observed_on": "2026-09-14",
+      "note": "Excluded from the $100 calculations because interchange varies by card and is not published as a single rate."
+    },
+    {
+      "id": "adyen",
+      "name": "Adyen",
+      "pricing_model": "interchange_plus_plus",
+      "fixed_fee_cents": 13,
+      "markup_percent": "0.60",
+      "monthly_fee_cents": 0,
+      "minimum_invoice": "Yes, amount depends on industry or business model",
+      "merchant_of_record": false,
+      "source_ids": [
+        "adyen-pricing"
+      ],
+      "dispute_fee": {
+        "label": "not published on the pricing page"
+      },
+      "dispute_fee_returned_on_win": "not stated",
+      "processing_fee_kept_on_refund": null,
+      "observed_on": "2026-09-14",
+      "note": "Excluded from the $100 calculations because interchange varies by card and is not published as a single rate.",
+      "rate_card": "$0.13 + interchange + 0.60%",
+      "rate_card_basis": "Visa and Mastercard, North America; interchange and scheme fees are passed through at cost",
+      "international_card_surcharge_percent": null,
+      "currency_conversion_percent": null
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "license_scope": "Payney's calculations and commentary; provider prices remain the providers' published terms",
+  "calculations": [
+    {
+      "provider": "stripe",
+      "domestic_fee_cents_1000": 59,
+      "effective_rate_1000": "59/1000",
+      "domestic_fee_cents_2500": 103,
+      "effective_rate_2500": "41/1000",
+      "domestic_fee_cents_10000": 320,
+      "effective_rate_10000": "4/125",
+      "domestic_fee_cents_50000": 1480,
+      "effective_rate_50000": "37/1250",
+      "international_card_fee_cents_10000": 470,
+      "international_card_with_conversion_fee_cents_10000": 570,
+      "processing_fee_lost_on_full_refund_cents_10000": 320
+    },
+    {
+      "provider": "paypal-checkout",
+      "domestic_fee_cents_1000": 84,
+      "effective_rate_1000": "839/10000",
+      "domestic_fee_cents_2500": 136,
+      "effective_rate_2500": "109/2000",
+      "domestic_fee_cents_10000": 398,
+      "effective_rate_10000": "199/5000",
+      "domestic_fee_cents_50000": 1794,
+      "effective_rate_50000": "897/25000",
+      "international_card_fee_cents_10000": 548,
+      "international_card_with_conversion_fee_cents_10000": 848,
+      "processing_fee_lost_on_full_refund_cents_10000": 398
+    },
+    {
+      "provider": "paypal-standard-cards",
+      "domestic_fee_cents_1000": 79,
+      "effective_rate_1000": "789/10000",
+      "domestic_fee_cents_2500": 124,
+      "effective_rate_2500": "99/2000",
+      "domestic_fee_cents_10000": 348,
+      "effective_rate_10000": "87/2500",
+      "domestic_fee_cents_50000": 1544,
+      "effective_rate_50000": "193/6250",
+      "international_card_fee_cents_10000": 498,
+      "international_card_with_conversion_fee_cents_10000": 798,
+      "processing_fee_lost_on_full_refund_cents_10000": 348
+    },
+    {
+      "provider": "paypal-advanced-cards",
+      "domestic_fee_cents_1000": 58,
+      "effective_rate_1000": "579/10000",
+      "domestic_fee_cents_2500": 101,
+      "effective_rate_2500": "81/2000",
+      "domestic_fee_cents_10000": 318,
+      "effective_rate_10000": "159/5000",
+      "domestic_fee_cents_50000": 1474,
+      "effective_rate_50000": "737/25000",
+      "international_card_fee_cents_10000": 468,
+      "international_card_with_conversion_fee_cents_10000": 768,
+      "processing_fee_lost_on_full_refund_cents_10000": 318
+    },
+    {
+      "provider": "braintree",
+      "domestic_fee_cents_1000": 58,
+      "effective_rate_1000": "579/10000",
+      "domestic_fee_cents_2500": 101,
+      "effective_rate_2500": "81/2000",
+      "domestic_fee_cents_10000": 318,
+      "effective_rate_10000": "159/5000",
+      "domestic_fee_cents_50000": 1474,
+      "effective_rate_50000": "737/25000",
+      "international_card_fee_cents_10000": 418,
+      "international_card_with_conversion_fee_cents_10000": 518,
+      "processing_fee_lost_on_full_refund_cents_10000": 318
+    },
+    {
+      "provider": "square-free-online",
+      "domestic_fee_cents_1000": 63,
+      "effective_rate_1000": "63/1000",
+      "domestic_fee_cents_2500": 113,
+      "effective_rate_2500": "9/200",
+      "domestic_fee_cents_10000": 360,
+      "effective_rate_10000": "9/250",
+      "domestic_fee_cents_50000": 1680,
+      "effective_rate_50000": "21/625",
+      "international_card_fee_cents_10000": 510,
+      "international_card_with_conversion_fee_cents_10000": null,
+      "processing_fee_lost_on_full_refund_cents_10000": 360
+    },
+    {
+      "provider": "square-free-api",
+      "domestic_fee_cents_1000": 59,
+      "effective_rate_1000": "59/1000",
+      "domestic_fee_cents_2500": 103,
+      "effective_rate_2500": "41/1000",
+      "domestic_fee_cents_10000": 320,
+      "effective_rate_10000": "4/125",
+      "domestic_fee_cents_50000": 1480,
+      "effective_rate_50000": "37/1250",
+      "international_card_fee_cents_10000": 470,
+      "international_card_with_conversion_fee_cents_10000": null,
+      "processing_fee_lost_on_full_refund_cents_10000": 320
+    },
+    {
+      "provider": "shopify-basic",
+      "domestic_fee_cents_1000": 59,
+      "effective_rate_1000": "59/1000",
+      "domestic_fee_cents_2500": 103,
+      "effective_rate_2500": "41/1000",
+      "domestic_fee_cents_10000": 320,
+      "effective_rate_10000": "4/125",
+      "domestic_fee_cents_50000": 1480,
+      "effective_rate_50000": "37/1250",
+      "international_card_fee_cents_10000": 420,
+      "international_card_with_conversion_fee_cents_10000": 570,
+      "processing_fee_lost_on_full_refund_cents_10000": 320
+    },
+    {
+      "provider": "shopify-grow",
+      "domestic_fee_cents_1000": 57,
+      "effective_rate_1000": "57/1000",
+      "domestic_fee_cents_2500": 98,
+      "effective_rate_2500": "39/1000",
+      "domestic_fee_cents_10000": 300,
+      "effective_rate_10000": "3/100",
+      "domestic_fee_cents_50000": 1380,
+      "effective_rate_50000": "69/2500",
+      "international_card_fee_cents_10000": 400,
+      "international_card_with_conversion_fee_cents_10000": 550,
+      "processing_fee_lost_on_full_refund_cents_10000": 300
+    },
+    {
+      "provider": "shopify-advanced",
+      "domestic_fee_cents_1000": 55,
+      "effective_rate_1000": "11/200",
+      "domestic_fee_cents_2500": 93,
+      "effective_rate_2500": "37/1000",
+      "domestic_fee_cents_10000": 280,
+      "effective_rate_10000": "7/250",
+      "domestic_fee_cents_50000": 1280,
+      "effective_rate_50000": "16/625",
+      "international_card_fee_cents_10000": 380,
+      "international_card_with_conversion_fee_cents_10000": 530,
+      "processing_fee_lost_on_full_refund_cents_10000": 280
+    },
+    {
+      "provider": "authorize-net",
+      "domestic_fee_cents_1000": 59,
+      "effective_rate_1000": "59/1000",
+      "domestic_fee_cents_2500": 103,
+      "effective_rate_2500": "41/1000",
+      "domestic_fee_cents_10000": 320,
+      "effective_rate_10000": "4/125",
+      "domestic_fee_cents_50000": 1480,
+      "effective_rate_50000": "37/1250",
+      "international_card_fee_cents_10000": null,
+      "international_card_with_conversion_fee_cents_10000": null,
+      "processing_fee_lost_on_full_refund_cents_10000": null
+    },
+    {
+      "provider": "paddle",
+      "domestic_fee_cents_1000": 100,
+      "effective_rate_1000": "1/10",
+      "domestic_fee_cents_2500": 175,
+      "effective_rate_2500": "7/100",
+      "domestic_fee_cents_10000": 550,
+      "effective_rate_10000": "11/200",
+      "domestic_fee_cents_50000": 2550,
+      "effective_rate_50000": "51/1000",
+      "international_card_fee_cents_10000": null,
+      "international_card_with_conversion_fee_cents_10000": null,
+      "processing_fee_lost_on_full_refund_cents_10000": null
+    },
+    {
+      "provider": "lemon-squeezy",
+      "domestic_fee_cents_1000": 100,
+      "effective_rate_1000": "1/10",
+      "domestic_fee_cents_2500": 175,
+      "effective_rate_2500": "7/100",
+      "domestic_fee_cents_10000": 550,
+      "effective_rate_10000": "11/200",
+      "domestic_fee_cents_50000": 2550,
+      "effective_rate_50000": "51/1000",
+      "international_card_fee_cents_10000": 700,
+      "international_card_with_conversion_fee_cents_10000": 700,
+      "processing_fee_lost_on_full_refund_cents_10000": 550
+    }
+  ]
+}
