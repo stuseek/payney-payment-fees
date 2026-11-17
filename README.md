@@ -1,4 +1,4 @@
-# US online card processing fees — September 2026
+# US online card processing fees — dated inputs and calculations
 
 This is a dated, machine-readable copy of [Payney's US online card fee comparison](https://payney.com/reports/online-card-fees-us-2026-09/). It brings published pricing onto a common basis for a US merchant. It is a transcription and calculation, not a test of real transactions, a merchant survey, or a ranking of payment services.
 
@@ -15,4 +15,18 @@ Payney's original calculations and commentary are reusable under [CC BY 4.0](htt
 
 > Payney. “Online Card Processing Fees Compared: What a $100 Sale Costs at US Providers.” US edition, September 14, 2026. https://payney.com/reports/online-card-fees-us-2026-09/
 
-The canonical report and downloads live at payney.com. This repository is a static mirror of that edition for reproducible analysis.
+## November 2 recheck: processing fees and full refunds
+
+The [November recheck in the original report](https://payney.com/reports/online-card-fees-us-2026-09/#november-recheck) compares six named US domestic online payment paths using rates observed on **November 2, 2026**. It adds reproducible $10 and $100 sale scenarios, including a batch of 100 orders with 10 full refunds. This is a dated pricing calculation; no live payments were tested. It is not a full update of every September price path.
+
+| File | Contents |
+| --- | --- |
+| [Observed inputs](editions/2026-11-02/recheck-2026-11-02-inputs.json) | Six named paths, observed rates, refund assumptions and provider source URLs |
+| [Scenarios and method](editions/2026-11-02/recheck-2026-11-02.json) | Inputs and twelve calculated scenarios in USD cents |
+| [Scenario CSV](editions/2026-11-02/recheck-2026-11-02.csv) | One row per payment path and order amount |
+
+For each payment, round percentage × sale amount + fixed fee half up to cents. For the batch, subtract total processing fees and refunded principal from gross receipts. Original fees on refunded payments are already included in total processing fees; do not subtract them twice. The remaining balance is **not profit**. Monthly plans, merchandise, shipping, tax, disputes, international cards, conversion and negotiated pricing are excluded. Shopify requires a paid plan; Square online checkout and its Online API, and PayPal Checkout and standard card payments, are distinct paths.
+
+For the difference between a merchant refund and a cardholder dispute, see [Payney’s chargeback vs refund guide](https://payney.com/blog/chargeback-vs-refund/), updated November 11. The guide is explanatory context, not another dataset edition.
+
+The canonical report and downloads live at payney.com. The original September files above remain frozen; the November recheck is a separate edition for reproducible analysis.

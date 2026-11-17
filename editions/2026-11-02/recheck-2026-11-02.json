@@ -1,0 +1,198 @@
+{
+  "observed_on": "2026-11-02",
+  "verified_at": "2026-11-02T19:30:44+00:00",
+  "geography": "US merchant accounts; domestic online card payments",
+  "currency": "USD",
+  "scope": "Six named standard published paths only. Original processing fees are kept on full refunds. Monthly subscriptions, merchandise, shipping, tax, disputes, international cards, currency conversion and negotiated prices are excluded from calculations. Shopify Basic requires a paid plan; the advertised rates are starting rates for eligible standard cards. No live payment transactions were tested.",
+  "providers": [
+    {
+      "id": "stripe",
+      "name": "Stripe standard cards",
+      "rate_percent": "2.9",
+      "fixed_fee_cents": 30,
+      "pricing_source": "https://stripe.com/pricing",
+      "refund_source": "https://docs.stripe.com/refunds",
+      "processing_fee_kept_on_refund": true
+    },
+    {
+      "id": "paypal-checkout",
+      "name": "PayPal Checkout",
+      "rate_percent": "3.49",
+      "fixed_fee_cents": 49,
+      "pricing_source": "https://www.paypal.com/us/business/paypal-business-fees",
+      "refund_source": "https://www.paypal.com/us/business/paypal-business-fees",
+      "processing_fee_kept_on_refund": true
+    },
+    {
+      "id": "paypal-standard-cards",
+      "name": "PayPal standard card payments",
+      "rate_percent": "2.99",
+      "fixed_fee_cents": 49,
+      "pricing_source": "https://www.paypal.com/us/business/paypal-business-fees",
+      "refund_source": "https://www.paypal.com/us/business/paypal-business-fees",
+      "processing_fee_kept_on_refund": true
+    },
+    {
+      "id": "square-free-online",
+      "name": "Square Free online checkout",
+      "rate_percent": "3.3",
+      "fixed_fee_cents": 30,
+      "pricing_source": "https://squareup.com/us/en/pricing",
+      "refund_source": "https://squareup.com/help/us/en/article/6116-process-refunds",
+      "processing_fee_kept_on_refund": true
+    },
+    {
+      "id": "square-free-api",
+      "name": "Square Free Online API",
+      "rate_percent": "2.9",
+      "fixed_fee_cents": 30,
+      "pricing_source": "https://squareup.com/us/en/pricing",
+      "refund_source": "https://squareup.com/help/us/en/article/6116-process-refunds",
+      "processing_fee_kept_on_refund": true
+    },
+    {
+      "id": "shopify-basic",
+      "name": "Shopify Payments Basic standard cards",
+      "rate_percent": "2.9",
+      "fixed_fee_cents": 30,
+      "pricing_source": "https://www.shopify.com/pricing",
+      "refund_source": "https://help.shopify.com/en/manual/payments/shopify-payments/payouts/refunds",
+      "processing_fee_kept_on_refund": true
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "scenarios": [
+    {
+      "provider": "stripe",
+      "amount_cents": 1000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 100000,
+      "refunded_principal_cents": 10000,
+      "processing_fee_cents": 5900,
+      "processing_fees_on_refunded_orders_cents": 590,
+      "remaining_cents": 84100
+    },
+    {
+      "provider": "stripe",
+      "amount_cents": 10000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 1000000,
+      "refunded_principal_cents": 100000,
+      "processing_fee_cents": 32000,
+      "processing_fees_on_refunded_orders_cents": 3200,
+      "remaining_cents": 868000
+    },
+    {
+      "provider": "paypal-checkout",
+      "amount_cents": 1000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 100000,
+      "refunded_principal_cents": 10000,
+      "processing_fee_cents": 8400,
+      "processing_fees_on_refunded_orders_cents": 840,
+      "remaining_cents": 81600
+    },
+    {
+      "provider": "paypal-checkout",
+      "amount_cents": 10000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 1000000,
+      "refunded_principal_cents": 100000,
+      "processing_fee_cents": 39800,
+      "processing_fees_on_refunded_orders_cents": 3980,
+      "remaining_cents": 860200
+    },
+    {
+      "provider": "paypal-standard-cards",
+      "amount_cents": 1000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 100000,
+      "refunded_principal_cents": 10000,
+      "processing_fee_cents": 7900,
+      "processing_fees_on_refunded_orders_cents": 790,
+      "remaining_cents": 82100
+    },
+    {
+      "provider": "paypal-standard-cards",
+      "amount_cents": 10000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 1000000,
+      "refunded_principal_cents": 100000,
+      "processing_fee_cents": 34800,
+      "processing_fees_on_refunded_orders_cents": 3480,
+      "remaining_cents": 865200
+    },
+    {
+      "provider": "square-free-online",
+      "amount_cents": 1000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 100000,
+      "refunded_principal_cents": 10000,
+      "processing_fee_cents": 6300,
+      "processing_fees_on_refunded_orders_cents": 630,
+      "remaining_cents": 83700
+    },
+    {
+      "provider": "square-free-online",
+      "amount_cents": 10000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 1000000,
+      "refunded_principal_cents": 100000,
+      "processing_fee_cents": 36000,
+      "processing_fees_on_refunded_orders_cents": 3600,
+      "remaining_cents": 864000
+    },
+    {
+      "provider": "square-free-api",
+      "amount_cents": 1000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 100000,
+      "refunded_principal_cents": 10000,
+      "processing_fee_cents": 5900,
+      "processing_fees_on_refunded_orders_cents": 590,
+      "remaining_cents": 84100
+    },
+    {
+      "provider": "square-free-api",
+      "amount_cents": 10000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 1000000,
+      "refunded_principal_cents": 100000,
+      "processing_fee_cents": 32000,
+      "processing_fees_on_refunded_orders_cents": 3200,
+      "remaining_cents": 868000
+    },
+    {
+      "provider": "shopify-basic",
+      "amount_cents": 1000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 100000,
+      "refunded_principal_cents": 10000,
+      "processing_fee_cents": 5900,
+      "processing_fees_on_refunded_orders_cents": 590,
+      "remaining_cents": 84100
+    },
+    {
+      "provider": "shopify-basic",
+      "amount_cents": 10000,
+      "orders": 100,
+      "full_refunds": 10,
+      "gross_cents": 1000000,
+      "refunded_principal_cents": 100000,
+      "processing_fee_cents": 32000,
+      "processing_fees_on_refunded_orders_cents": 3200,
+      "remaining_cents": 868000
+    }
+  ]
+}
