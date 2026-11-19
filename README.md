@@ -17,6 +17,8 @@ Payney's original calculations and commentary are reusable under [CC BY 4.0](htt
 
 ## November 2 recheck: processing fees and full refunds
 
+[Run the refund comparison in Google Colab](https://colab.research.google.com/github/stuseek/payney-payment-fees/blob/main/refund-scenarios.ipynb) or [view the notebook on GitHub](refund-scenarios.ipynb). Enter your average ticket, orders and full refunds to compare all six payment paths.
+
 The [November recheck in the original report](https://payney.com/reports/online-card-fees-us-2026-09/#november-recheck) compares six named US domestic online payment paths using rates observed on **November 2, 2026**. It adds reproducible $10 and $100 sale scenarios, including a batch of 100 orders with 10 full refunds. This is a dated pricing calculation; no live payments were tested. It is not a full update of every September price path.
 
 | File | Contents |
