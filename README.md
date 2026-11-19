@@ -1,3 +1,24 @@
+---
+pretty_name: US online card processing fees and full-refund scenarios
+language:
+- en
+license: cc-by-4.0
+tags:
+- finance
+- ecommerce
+- payment-processing
+size_categories:
+- n<1K
+configs:
+- config_name: domestic_sale_scenarios
+  default: true
+  data_files: editions/2026-09-14/domestic-card-scenarios.csv
+- config_name: published_price_paths
+  data_files: data.csv
+- config_name: full_refund_scenarios
+  data_files: editions/2026-11-02/recheck-2026-11-02.csv
+---
+
 # US online card processing fees — dated inputs and calculations
 
 This is a dated, machine-readable copy of [Payney's US online card fee comparison](https://payney.com/reports/online-card-fees-us-2026-09/). It brings published pricing onto a common basis for a US merchant. It is a transcription and calculation, not a test of real transactions, a merchant survey, or a ranking of payment services.
@@ -10,6 +31,7 @@ The September 14, 2026 edition covers 15 published price paths at 10 providers. 
 | --- | --- |
 | [data.json](data.json) | Inputs, 23 source references, scope, methodology, provider terms and calculations |
 | [data.csv](data.csv) | One row per published price path, including the calculated flat-rate scenarios |
+| [Domestic sale scenarios (CSV)](editions/2026-09-14/domestic-card-scenarios.csv) | 52 rows, one per payment path and ticket size, with gross amount, processing fee and amount after processing in USD cents |
 
 The [report and methodology](https://payney.com/reports/online-card-fees-us-2026-09/#method) explain the assumptions and limitations. Always verify current terms with the provider before making a payment-processing decision: this edition is a snapshot, not a live rate feed. Custom contracts, in-person payments, tax handling and other costs can change the result.
 
