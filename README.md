@@ -2,6 +2,8 @@
 
 This is a dated, machine-readable copy of [Payney's US online card fee comparison](https://payney.com/reports/online-card-fees-us-2026-09/). It brings published pricing onto a common basis for a US merchant. It is a transcription and calculation, not a test of real transactions, a merchant survey, or a ranking of payment services.
 
+[Download the $100 processing-fee chart (SVG)](https://payney.com/reports/online-card-fees-us-2026-09/fees.svg) or [get HTML to embed it with the source and licence](https://payney.com/reports/online-card-fees-us-2026-09/#reuse-chart). The chart covers 13 flat-rate price paths observed on September 14, 2026.
+
 The September 14, 2026 edition covers 15 published price paths at 10 providers. Thirteen flat-rate paths have calculated processing costs for $10, $25, $100 and $500 online card sales. Two interchange-plus paths are documented without inventing a single all-in rate. The data also records published international-card and currency-conversion surcharges, refund treatment, dispute fees, observation dates and source URLs. Unpublished terms remain blank rather than estimated.
 
 | File | Contents |
