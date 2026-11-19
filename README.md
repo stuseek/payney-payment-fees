@@ -33,6 +33,8 @@ The September 14, 2026 edition covers 15 published price paths at 10 providers. 
 | [data.csv](data.csv) | One row per published price path, including the calculated flat-rate scenarios |
 | [Domestic sale scenarios (CSV)](editions/2026-09-14/domestic-card-scenarios.csv) | 52 rows, one per payment path and ticket size, with gross amount, processing fee and amount after processing in USD cents |
 
+To use a flat-rate price path in a promotion, enter the percentage and fixed fee in the Excel worksheet alongside your product cost, shipping and ad cost per extra order. It calculates the extra orders needed to preserve the contribution from your usual full-price sales. [Compare a discount with free shipping in Excel](https://payney.com/tools/?utm_source=github&utm_medium=referral&utm_campaign=offer_worksheet#offer-margin-worksheet).
+
 The [report and methodology](https://payney.com/reports/online-card-fees-us-2026-09/#method) explain the assumptions and limitations. Always verify current terms with the provider before making a payment-processing decision: this edition is a snapshot, not a live rate feed. Custom contracts, in-person payments, tax handling and other costs can change the result.
 
 Payney's original calculations and commentary are reusable under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) with attribution; provider prices and third-party material remain subject to their owners' terms. See [LICENSE.md](LICENSE.md). Suggested citation:
