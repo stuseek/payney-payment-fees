@@ -1,0 +1,10 @@
+provider_id,provider,disputed_amount_cents,accepted_cents,challenged_lost_cents,challenged_won_cents,received_fee_cents,countered_fee_cents,fees_returned_on_win_cents,response_labor_cents,break_even_probability,observed_on,source_urls
+stripe-manual,Stripe (manual response),2500,4000,5500,1500,1500,1500,1500,1000,5/8,2026-09-14,https://stripe.com/pricing https://docs.stripe.com/disputes/how-disputes-work
+stripe-manual,Stripe (manual response),10000,11500,13000,1500,1500,1500,1500,1000,5/23,2026-09-14,https://stripe.com/pricing https://docs.stripe.com/disputes/how-disputes-work
+stripe-manual,Stripe (manual response),50000,51500,53000,1500,1500,1500,1500,1000,5/103,2026-09-14,https://stripe.com/pricing https://docs.stripe.com/disputes/how-disputes-work
+shopify-payments,Shopify Payments,2500,4000,4000,0,1500,0,1500,1000,1/4,2026-09-14,https://help.shopify.com/en/manual/payments/chargebacks/chargeback-process
+shopify-payments,Shopify Payments,10000,11500,11500,0,1500,0,1500,1000,2/23,2026-09-14,https://help.shopify.com/en/manual/payments/chargebacks/chargeback-process
+shopify-payments,Shopify Payments,50000,51500,51500,0,1500,0,1500,1000,2/103,2026-09-14,https://help.shopify.com/en/manual/payments/chargebacks/chargeback-process
+square,Square,2500,2500,2500,0,0,0,0,1000,2/5,2026-09-14,https://squareup.com/help/us/en/article/3882-payment-disputes-walkthrough
+square,Square,10000,10000,10000,0,0,0,0,1000,1/10,2026-09-14,https://squareup.com/help/us/en/article/3882-payment-disputes-walkthrough
+square,Square,50000,50000,50000,0,0,0,0,1000,1/50,2026-09-14,https://squareup.com/help/us/en/article/3882-payment-disputes-walkthrough

@@ -55,4 +55,16 @@ For each payment, round percentage × sale amount + fixed fee half up to cents. 
 
 For the difference between a merchant refund and a cardholder dispute, see [Payney’s chargeback vs refund guide](https://payney.com/blog/chargeback-vs-refund/), updated November 11. The guide is explanatory context, not another dataset edition.
 
-The canonical report and downloads live at payney.com. The original September files above remain frozen; the November recheck is a separate edition for reproducible analysis.
+## What does a merchant lose on a disputed $100 card payment?
+
+On the standard US terms Payney checked on September 14, 2026, a merchant who challenged a $100 dispute and lost had $130 unrecovered at Stripe, $115 at Shopify Payments and $100 at Square. Each figure includes the disputed $100. The extra dispute fees were $30, $15 and $0 respectively.
+
+| Payment provider | Accept dispute | Challenge and lose | Challenge and win |
+| --- | ---: | ---: | ---: |
+| Stripe, manual response | $115 | $130 | $15 |
+| Shopify Payments | $115 | $115 | $0 |
+| Square | $100 | $100 | $0 |
+
+The table counts unrecovered principal and dispute fees. Original processing charges, merchandise, shipping and staff time are outside these totals. The accompanying CSV covers $25, $100 and $500 disputes in integer US cents. Its separate break-even calculation uses an illustrative $10 in response labor. [Scenario CSV](comparisons/chargebacks-2026-09-14/scenarios.csv) · [Payney report, provider terms and methodology](https://payney.com/reports/chargeback-fees-us-2026-09/?utm_source=github&utm_medium=referral&utm_campaign=chargeback_comparison#order)
+
+Credit Payney for the dispute calculations under CC BY 4.0 and cite the [chargeback report](https://payney.com/reports/chargeback-fees-us-2026-09/). The sale and refund data retain their original observation dates and release files.
