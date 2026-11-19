@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+type: dataset
+message: "When you use these fee calculations, please cite the dataset and link to the Payney report."
+title: "US online card processing fees and full-refund scenarios"
+authors:
+  - name: Payney
+    website: "https://payney.com/"
+version: "data-2026-11-19"
+date-released: "2026-11-19"
+url: "https://payney.com/reports/online-card-fees-us-2026-09/"
+repository-artifact: "https://github.com/stuseek/payney-payment-fees/releases/tag/data-2026-11-19"
+license: CC-BY-4.0
